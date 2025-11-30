@@ -1,4 +1,4 @@
-module github.com/khepin/liteq
+module github.com/jadudm/liteq
 
 go 1.22.0
 

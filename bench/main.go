@@ -7,7 +7,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/khepin/liteq"
+	"github.com/jadudm/liteq"
 	_ "github.com/mattn/go-sqlite3"
 )
 

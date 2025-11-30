@@ -14,14 +14,14 @@ liteq allows to run tens of thousands of jobs per second if needed. It can also 
 ### Install
 
 ```sh
-go get github.com/khepin/liteq
+go get github.com/jadudm/liteq
 ```
 
 ### Setup and DB creation
 
 ```go
 import (
-    "github.com/khepin/liteq"
+    "github.com/jadudm/liteq"
     _ "github.com/mattn/go-sqlite3"
 )
 
