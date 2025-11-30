@@ -23,7 +23,7 @@ VALUES
     ) ON CONFLICT (deduping_key, job_status)
 WHERE
     deduping_key != ''
-    AND (job_status = 'queued' OR job_status = 'completed') DO NOTHING;
+    AND (job_status = 'queued' OR job_status = 'fetched' OR job_status = 'completed') DO NOTHING;
 
 -- name: doQueueJobReplaceDupe :exec
 INSERT INTO

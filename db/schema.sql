@@ -24,7 +24,7 @@ WHERE
 CREATE UNIQUE INDEX IF NOT EXISTS dedupe_ignore ON jobs (deduping_key, job_status)
 WHERE
     deduping_key != ''
-    AND (job_status = 'queued' OR job_status = 'completed');
+    AND (job_status = 'queued' OR job_status = 'fetched' OR job_status = 'completed');
 
 CREATE UNIQUE INDEX IF NOT EXISTS dedupe_replace ON jobs (deduping_key, job_status)
 WHERE
