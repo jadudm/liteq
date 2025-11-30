@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"log"
 	"os"
 	"strings"
 	"testing"
@@ -383,17 +384,20 @@ func Test_DedupeIgnore(t *testing.T) {
 	is := is.New(t)
 	jqueue, err := getJqueue("jobs.db")
 	is.NoErr(err) // error getting job queue
+
+	log.Println("A")
 	err = jqueue.QueueJob(context.Background(), internal.QueueJobParams{
 		Queue:       "",
 		Job:         `job:1`,
-		DedupingKey: internal.IgnoreDuplicate("dedupe"),
+		DedupingKey: internal.IgnoreDuplicate("dedupe_ignore"),
 	})
 	is.NoErr(err) // error queuing job
 
+	log.Println("B")
 	err = jqueue.QueueJob(context.Background(), internal.QueueJobParams{
 		Queue:       "",
 		Job:         `job:2`,
-		DedupingKey: internal.IgnoreDuplicate("dedupe"),
+		DedupingKey: internal.IgnoreDuplicate("dedupe_ignore"),
 	})
 	is.NoErr(err) // error queuing job
 
@@ -413,14 +417,14 @@ func Test_DedupeReplace(t *testing.T) {
 	err = jqueue.QueueJob(context.Background(), internal.QueueJobParams{
 		Queue:       "",
 		Job:         `job:1`,
-		DedupingKey: internal.ReplaceDuplicate("dedupe"),
+		DedupingKey: internal.ReplaceDuplicate("dedupe_replace"),
 	})
 	is.NoErr(err) // error queuing job
 
 	err = jqueue.QueueJob(context.Background(), internal.QueueJobParams{
 		Queue:       "",
 		Job:         `job:2`,
-		DedupingKey: internal.ReplaceDuplicate("dedupe"),
+		DedupingKey: internal.ReplaceDuplicate("dedupe_replace"),
 	})
 	is.NoErr(err) // error queuing job
 
